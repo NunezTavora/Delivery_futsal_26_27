@@ -288,8 +288,7 @@
                                 <th class="p-3 text-center" title="Partidos Jugados">PJ</th>
                                 <th class="p-3 text-center font-bold text-amber-400" title="Goles">Goles</th>
                                 <th class="p-3 text-center font-bold text-blue-400" title="Asistencias">Asis</th>
-                                <th class="p-3 text-center text-rose-400" title="Faltas / Tarjetas">Faltas</th>
-                                <th class="p-3 text-center">Acciones</th>
+                                                                <th class="p-3 text-center">Acciones</th>
                             </tr>
                         </thead>
                         <tbody id="squad-tbody" class="divide-y divide-slate-800 text-sm font-medium">
@@ -384,7 +383,7 @@
                     </select>
                 </div>
 
-                <div class="grid grid-cols-4 gap-2">
+                <div class="grid grid-cols-3 gap-2">
                     <div>
                         <label class="block text-xs font-bold text-slate-400 mb-1 uppercase">PJ</label>
                         <input type="number" id="player-pj" min="0" value="0" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-2 py-2 text-sm text-center text-white focus:border-purple-500 focus:outline-none">
@@ -396,10 +395,6 @@
                     <div>
                         <label class="block text-xs font-bold text-blue-400 mb-1 uppercase">Asis</label>
                         <input type="number" id="player-assists" min="0" value="0" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-2 py-2 text-sm text-center text-white focus:border-purple-500 focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold text-rose-400 mb-1 uppercase">Faltas</label>
-                        <input type="number" id="player-fouls" min="0" value="0" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-2 py-2 text-sm text-center text-white focus:border-purple-500 focus:outline-none">
                     </div>
                 </div>
 
@@ -1036,8 +1031,7 @@
                     <td class="p-3 text-center text-slate-300">${p.pj}</td>
                     <td class="p-3 text-center font-extrabold text-amber-400">${p.goals}</td>
                     <td class="p-3 text-center font-extrabold text-blue-400">${p.assists}</td>
-                    <td class="p-3 text-center text-rose-400">${p.fouls}</td>
-                    <td class="p-3 text-center">
+                                        <td class="p-3 text-center">
                         <div class="flex items-center justify-center gap-2">
                             <button onclick="openPlayerModal(${p.id})" class="p-1.5 text-slate-400 hover:text-purple-400 transition" title="Editar">
                                 <i class="fa-solid fa-pen-to-square"></i>
@@ -1073,7 +1067,6 @@
                     document.getElementById('player-pj').value = player.pj;
                     document.getElementById('player-goals').value = player.goals;
                     document.getElementById('player-assists').value = player.assists;
-                    document.getElementById('player-fouls').value = player.fouls;
                 }
             } else {
                 document.getElementById('player-modal-title').textContent = 'Añadir Jugador';
@@ -1097,16 +1090,15 @@
             const pj = parseInt(document.getElementById('player-pj').value) || 0;
             const goals = parseInt(document.getElementById('player-goals').value) || 0;
             const assists = parseInt(document.getElementById('player-assists').value) || 0;
-            const fouls = parseInt(document.getElementById('player-fouls').value) || 0;
 
             if (idVal) {
                 const index = squadData.findIndex(p => p.id === parseInt(idVal));
                 if (index !== -1) {
-                    squadData[index] = { id: parseInt(idVal), number, name, position, pj, goals, assists, fouls };
+                    squadData[index] = { id: parseInt(idVal), number, name, position, pj, goals, assists };
                 }
             } else {
                 const newId = Date.now();
-                squadData.push({ id: newId, number, name, position, pj, goals, assists, fouls });
+                squadData.push({ id: newId, number, name, position, pj, goals, assists });
             }
 
             saveStorage();

@@ -1,6 +1,6 @@
 // Service worker: guarda en caché la app y los recursos externos (estilos, iconos, fuentes)
 // para que abra rápido y también funcione sin conexión tras la primera visita.
-const CACHE = 'delivery-futsal-v1';
+const CACHE = 'delivery-futsal-v2';
 const CORE = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', event => {
